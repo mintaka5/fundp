@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ByteHelper {
+public class ByteSplitter {
     private byte[] data;
     private int bufferLength = 64;
     private List<byte[]> stack = new ArrayList<>();
 
-    public ByteHelper(String s, int bufferLength) {
+    public ByteSplitter(String s, int bufferLength) {
         setData(s.getBytes(StandardCharsets.UTF_8));
         setBufferLength(bufferLength);
 
         split();
     }
 
-    public ByteHelper(byte[] b, int bufferLength) {
+    public ByteSplitter(byte[] b, int bufferLength) {
         setData(b);
         setBufferLength(bufferLength);
 
@@ -68,5 +68,9 @@ public class ByteHelper {
         stack.forEach(s -> sb.append(Hex.encodeHexString(s) + "\n"));
 
         return sb.toString();
+    }
+
+    public List<byte[]> getStack() {
+        return stack;
     }
 }
